@@ -17,9 +17,9 @@ if __name__ == "__main__":
     driver = invoke_chrome_driver()
     result_lists = []
     # スクレイピングするURLを記載する
-    url = 'http://12.xmbs.jp/LACOWEGOUNI-**************-rl.php?guid=on'
+    url = 'http://12.xmbs.jp/LACOWEGOUNI-106561-rl.php?guid=on'
     # どこまでのページを取得するか記載する
-    page_num = 500
+    page_num = 339
     for i in range(0, page_num):
         if i == 0:
             driver.get(url)
@@ -29,7 +29,7 @@ if __name__ == "__main__":
         html = html.replace('\n', '')
         m = re.search(r'<a name="viewlist"><\/a>(.*?)<font size=', html)
         matched_html = m.group(1)
-        post_texts = matched_html.split('<br><br><hr color="#C0C0C0" width="95%" size="1" align="left">')
+        post_texts = matched_html.split('<hr color="#C0C0C0" width="95%" size="1" align="left">')
         for post in post_texts:
             result_list = []
             if post == '':
