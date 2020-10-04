@@ -20,7 +20,7 @@ if __name__ == "__main__":
     driver = invoke_chrome_driver()
     result_lists = []
     # スクレイピングするURLを記載する
-    url = ''
+    url = 'http://12.xmbs.jp/d3.php?ID=LACOWEGOUNI&c_num=21362'
     # どこまでのページを取得するか記載する
     page_num = 51
     
