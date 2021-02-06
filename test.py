@@ -1,6 +1,7 @@
 from selenium import webdriver
 import re
 import csv
+import time
 
 
 
@@ -23,33 +24,45 @@ if __name__ == "__main__":
     driver = invoke_chrome_driver()
     result_lists = []
     url_1 = 'https://www.yodobashi.com/'
-    url_2 = 'https://www.yodobashi.com/'
-    url_3 = 'https://www.yodobashi.com/'
+    url_2 = 'https://www.toysrus.co.jp/s/dsg-670085300'
+    url_3 = 'https://www.biccamera.com/bc/item/7477448/'
+
+# https://www.yodobashi.com/product/100000001005291839/
+# https://www.yodobashi.com/product/100000001005291839/
 
     workbook = openpyxl.load_workbook('test.xlsx')
     sheet = workbook["Sheet1"]
 
-    for cols in sheet.iter_cols(min_row=1, min_col=1, max_row=7, max_col=2):
+    time.sleep(5)
+    for cols in sheet.iter_cols(min_row=2, min_col=2, max_row=7, max_col=2):
         for cell in cols:
             print(cell.value)
+            word = cell.value
+            driver.get(url_1)
+            time.sleep(3)
+            search_input = driver.find_element_by_id('getJsonData')
+            search_input.send_keys(word)
+            search_btn = driver.find_element_by_class_name('h-icnSrch')
+            search_btn.click()
+            time.sleep(30)
 
-    return
+            
 
 
-    for i in range(0, page_num):
+    # for i in range(0, page_num):
         # driver.get(url + '&disp=' + str(i))
         # html = driver.page_source
         # html = html.replace('\n', '')
         # m = re.search(r'<a name="viewlist"><\/a>(.*?)<font size=', html)
         # matched_html = m.group(1)
         # post_texts = matched_html.split('<hr color="#C0C0C0" width="95%" size="1" align="left">')
-        for post in post_texts:
-            try:
-                print('test')
-            except Exception as e:
-                print(e)
-                print('取得できませんでした')
-                pass
+        # for post in post_texts:
+        #     try:
+        #         print('test')
+        #     except Exception as e:
+        #         print(e)
+        #         print('取得できませんでした')
+        #         pass
 
 
 
